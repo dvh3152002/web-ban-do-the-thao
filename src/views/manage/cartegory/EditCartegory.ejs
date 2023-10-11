@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/menu') %>
+    <div class="manage-container">
+      <%- include('../../partials/slider') %>
+        <div class="manage-right">
+            <div class="row mt-5">
+                <div class="col-12"><h3>Cập nhật danh mục sản phẩm</h3></div>
+                <form action="/cartegoryEdit/<%= cartegory.id %>" method="post" class="col-6">
+                    <div class="form-group">
+                        <label>Tên danh mục</label>
+                        <input type="text" class="form-control" required name="name" 
+                        value="<%= cartegory.name %>">
+                    </div>
+                    <div class="form-group my-2">
+                        <label>Danh mục cha</label>
+                        <select class="form-control" name="parent_id">
+                            <option value="0">Chọn danh mục cha</option>
+                            <% for(let i=0; i<data.length; i++){ %>
+                                <% if(cartegory.parent_id===data[i].id){ %>
+                                    <option selected value="<%=data[i].id%>"><%=data[i].name%></option>
+                                <% }else{ %>
+                                    <option value="<%=data[i].id%>"><%=data[i].name%></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

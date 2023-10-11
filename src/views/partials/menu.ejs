@@ -1,0 +1,11 @@
+<div class="manage-menu">
+    <h4 class="title">Trang quản trị</h4>
+    <div class="manage-menu-right">
+        <div class="">
+            <i class="fas fa-user"></i><span>Xin chào  <%=lcAuthUser&&lcAuthUser.name?lcAuthUser.name:''%></span>
+        </div>
+        <form action="/logout" method="post" class="log-out">
+            <button><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></button>
+        </form>
+    </div>
+</div>

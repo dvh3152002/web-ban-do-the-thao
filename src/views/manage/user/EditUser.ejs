@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/js/select2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+    <%- include('../../partials/menu') %>
+    <div class="manage-container">
+      <%- include('../../partials/slider') %>
+        <div class="manage-right">
+            <div class="row mt-5">
+                <div class="col-12"><h3>Thêm user</h3></div>
+                <form action="/userEdit/<%=user.id%>" method="post" class="col-6">
+                    <div class="form-group">
+                        <label>Họ tên</label>
+                        <input required value="<%=user.name%>" type="text" class="form-control" name="name" placeholder="Nhập họ tên">
+                    </div>
+
+                    <div class="form-group my-2">
+                        <label>Email</label>
+                        <input required value="<%=user.email%>" type="email" class="form-control" name="email" placeholder="Nhập email">
+                    </div>
+
+                    <div class="form-group my-2">
+                        <label>Chọn vai trò</label>
+                        <select class="form-control select2_role" name="role_id">
+                            <option value="0">Chọn vai trò</option>
+                            <% for(let i=0; i<role.length; i++){ %>
+                                <% if(user.role_id===role[i].id){ %>
+                                    <option selected value="<%=role[i].id%>"><%=role[i].name%></option>
+                                <% }else{ %>
+                                    <option value="<%=role[i].id%>"><%=role[i].name%></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

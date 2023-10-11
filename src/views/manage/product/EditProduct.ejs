@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="/js/handleImg.js"></script>
+  <script src="/js/select2.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+</head>
+<body>
+    <%- include('../../partials/menu') %>
+    <div class="manage-container">
+      <%- include('../../partials/slider') %>
+        <div class="manage-right">
+            <div class="row mt-5">
+                <div class="col-12"><h3>Thêm sản phẩm</h3></div>
+                <form action="/productEdit/<%=dataProduct.id%>" method="post" class="col-6" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Tên sản phẩm</label>
+                        <input required value="<%=dataProduct.name%>" type="text" class="form-control" name="name" placeholder="Thêm tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label>Giá sản phẩm</label>
+                        <input required value="<%=dataProduct.price%>" type="text" class="form-control" name="price" placeholder="Thêm giá sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label>Ảnh đại diện</label>
+                        <br>
+                        <label id="upload" class="btn btn-dark" for="formFile" class="form-label">Upload</label>
+                        <input onchange="onChangeSingleImage(event)" class="form-control-file" type="file" placeholder="Ảnh đại diện" name="feature_image" id="formFile" hidden>
+                        <div class="col-12 my-2">
+                            <div class="row">
+                                <img id="img" class="product-img" src="data:image/jpeg;base64,<%=Buffer.from(dataProduct.feature_image, 'base64').toString('binary')%>" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ảnh chi tiết</label>
+                        <br>
+                        <label class="btn btn-dark" for="formFileMultiple" class="form-label">Upload</label>
+                        <input onchange="onChangeMultipleImage(event,'edit')" class="form-control-file" type="file" placeholder="Ảnh chi tiết" name="image_details" id="formFileMultiple" multiple hidden>
+                        <div class="row mt-2" >
+                            <div id="image-details-before">
+                                <% for(let i=0; i<productImageData.length; i++){ %>
+                                    <img class="product-img" src="data:image/jpeg;base64,<%=Buffer.from(productImageData[i].image, 'base64').toString('binary')%>" alt="">
+                                <% } %>
+                            </div>
+                            <div id="image-details"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Chọn danh mục</label>
+                        <select class="form-control select2_init" name="cartegory_id">
+                            <option value="0">Chọn danh mục</option>
+                            <% for(let i=0; i<data.length; i++){ %>
+                                <% if(dataProduct.cartegory_id===data[i].id){ %>
+                                    <option selected value="<%=data[i].id%>"><%=data[i].name%></option>
+                                <% }else{ %>
+                                    <option value="<%=data[i].id%>"><%=data[i].name%></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhập tags cho sản phẩm</label>
+                        <select name="tags" class="form-control tag_select2_choose" multiple="multiple">
+                            <% for(let i=0; i<productTagData.length; i++){ %>
+                                <option selected><%=productTagData[i].tagData.name%></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nhập nội dung</label>
+                        <textarea required class="form-control" id="editor" name="content"><%=dataProduct.content%> </textarea>
+                    </div>
+
+                    <button class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/ckeditor.js"></script>
+</body>
+</html>

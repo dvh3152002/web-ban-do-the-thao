@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./head') %>
+<body>
+    <%- include('../shop/menuShop.ejs') %>
+    <div class="container mt-2">
+        <%let dataDetailProductImage=data.productImageData;
+            let dataTagProduct=data.productTagData;
+        %>
+        <form action="/addToCart/<%=data.id%>" method="post" class="product-content">
+            <div class="product-content-left">
+                <div class="product-big-img">
+                    <img src="data:image/jpeg;base64,<%=Buffer.from(data.feature_image, 'base64').toString('binary')%>" alt="">
+                </div>
+
+                <div class="product-small-img">
+                    <%for(let i=0;i<dataDetailProductImage.length;i++){%>
+                        <img src="data:image/jpeg;base64,<%=Buffer.from(dataDetailProductImage[i].image, 'base64').toString('binary')%>" alt="">
+                    <%}%>                 
+                </div>
+            </div>
+
+            <div class="product-content-right">
+                <div class="product-content-right-product-name">
+                    <h4><%=data.name%></h4>
+                    <p><%= data.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %></p>
+                </div>
+
+                <div class="quantity">
+                    <h4>Số lượng</h4>
+                    <input name="quantity" type="number" min="1" value="1">
+                </div>
+
+                <div class="product-tag">
+                    <span>Size:</span>
+                    <%for(let i=0;i<dataTagProduct.length;i++){%>
+                        <input type="radio" value="<%=dataTagProduct[i].tag_id%>" name="tag_id" class="btn"><%=dataTagProduct[i].tagData.name%></input>
+                    <%}%> 
+                </div>
+
+                <div class="product-button">
+                    <button class="btn btn-outline-dark">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Thêm vào giỏ</p>
+                    </button>
+                    <a class="btn btn-outline-dark mb-3" href="/">Mua tiếp</a>
+                </div>
+                <div class="product-icon">
+                    <div class="icon-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>Hotline</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="far fa-comments"></i>
+                        <p>Chat</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="far fa-envelope"></i>
+                        <p>Mail</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="product-content-footer">
+            <div class="footer-top">
+                <div class="footer-description">
+                    <h4>Thông tin chi tiết:</h4>
+                    <%- data.content %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../shop/footer.ejs') %>
+</body>
+</html>

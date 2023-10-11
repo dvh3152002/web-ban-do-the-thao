@@ -1,0 +1,80 @@
+<header id="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="col-sm-6">
+                <div class="contactinfo">
+                    <ul class="nav nav-pills">
+                        <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="social-icons pull-right">
+                    <ul class="nav nav-right">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-middle">
+        <div class="container">
+            <div class="logo pull-left">
+                <a href="/"><img src="/images/logo.jpg" alt="" /></a>
+            </div>
+            <div class="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn py-1 btn-danger">Search</button>
+            </div>
+            <div class="col-sm-8">
+                <div class="shop-menu pull-right">
+                    <ul class="nav nav-right">
+                            <%if(lcIsAuthenticated){%>
+                                <li style="cursor: pointer;" class="mt-lg-4" onclick="showHideProfile()">
+                                    <i class="fas fa-user" style="font-size: 30px;color: black;" ></i>Tài khoản
+                                    <ul id="profile">
+                                        <%if(isAdmin){%>
+                                            <li><a class="mt-lg-4" href="/admin">Trang quản trị</a></li>    
+                                        <%}%>
+                                        <li><a class="mt-lg-4" href="/cart">Giỏ hàng</a></li>
+                                        <li><a class="mt-lg-4" href="/orderUser">Quản lí đơn hàng</a></li>
+                                        <li>
+                                            <form action="/logout" method="post">
+                                                <button class="btn-log">Đăng xuất</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <%}else{%>
+                                <li>
+                                    <form action="/login">
+                                        <button class="btn btn-danger mt-lg-4"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
+                                    </form>
+                                </li>
+                            <%}%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <div class="container">
+          <ul class="menu-bar nav">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/">Giới thiệu</a></li>
+            <li><a href="/getAllNewProduct">Sản phẩm mới</a></li>
+            <li><a href="/getAllProduct">Sản phẩm</a></li>
+            <li><a href="/">Tin tức</a></li>
+            <li><a href="/">Tuyển dụng</a></li>
+            <li><a href="/">Liên hệ</a></li>
+          </ul>
+        </div>
+    </div>
+</header>

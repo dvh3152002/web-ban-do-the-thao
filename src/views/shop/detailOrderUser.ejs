@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./head') %>
+<body>
+    <%- include('../shop/menuShop.ejs') %>
+    <div class="container my-3">
+        <div class="manage-right">
+            <div class="row mb-5">
+                <div class="col-12 mb-2 text-center text-danger"><h3>Thông tin khách hàng</h3></div>
+                <div class="col-4">
+                    <label>Tên người nhận: <%=customer.name%></label>
+                </div>                   
+                <div class="col-3">
+                    <label>Số điện thoại: <%=customer.phone_number%></label>
+                </div>
+                <div class="col-5" style="display: flex;">
+                    <label>Tình trạng: <%=customer.status%></label>
+                </div>
+                <div class="col-12">
+                    <label>Địa chỉ: <%=customer.address%></label>
+                </div>
+                <div class="col-12">
+                    <label class="col-6">Danh sách sản phẩm:</label>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Tên sản phẩm</td>
+                                <td>Ảnh</td>
+                                <td>Size</td>
+                                <td>Số lượng</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0;i<products.length;i++){ %>
+                                <tr>
+                                  <td class="col-3"><%= products[i].name %></td>
+                                  <td class="col-5">
+                                    <img class="product-img" src="<%=products[i].feature_image%>" alt="">
+                                  </td>
+                                  <td class="col-3"><%=products[i].tag_name%></td>
+                                  <td class="col-3"><%=products[i].quantity%></td>
+                                </tr>
+                              <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../shop/footer.ejs') %>
+</body>
+</html>

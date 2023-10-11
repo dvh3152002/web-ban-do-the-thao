@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/menu') %>
+    <div class="manage-container">
+      <%- include('../../partials/slider') %>
+        <form action="/updateStatus/<%=customer.id%>" method="post" class="manage-right">
+            <div class="row mt-5">
+                <div class="col-12"><h3>Thông tin khách hàng</h3></div>
+                <div class="col-4">
+                    <label>Tên khách hàng: <%=customer.name%></label>
+                </div>                   
+                <div class="col-3">
+                    <label>Số điện thoại: <%=customer.phone_number%></label>
+                </div>
+                <div class="col-5" style="display: flex;">
+                    <label class="col-3">Tình trạng:</label>
+                    <select class="form-control" name="status">
+                        <option value="Đang xử lý" <%=customer.status==='Đang xử lý'?'selected':''%>>Đang xử lý</option>
+                        <option value="Đã nhận" <%=customer.status==='Đã nhận'?'selected':''%>>Đã nhận</option>
+                        <option value="Đã hủy" <%=customer.status==='Đã hủy'?'selected':''%>>Đã hủy</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label>Địa chỉ: <%=customer.address%></label>
+                </div>
+                <div class="col-12">
+                    <label class="col-6">Danh sách sản phẩm:</label>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Tên sản phẩm</td>
+                                <td>Ảnh</td>
+                                <td>Size</td>
+                                <td>Số lượng</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0;i<products.length;i++){ %>
+                                <tr>
+                                  <td class="col-3"><%= products[i].name %></td>
+                                  <td class="col-5">
+                                    <img class="product-img" src="<%=products[i].feature_image%>" alt="">
+                                  </td>
+                                  <td class="col-3"><%=products[i].tag_name%></td>
+                                  <td class="col-3"><%=products[i].quantity%></td>
+                                </tr>
+                              <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn-success">Cập nhật</button>
+        </form>
+    </div>
+</body>
+</html>

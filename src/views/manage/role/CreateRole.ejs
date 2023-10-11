@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/js/select2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+    <%- include('../../partials/menu') %>
+    <div class="manage-container">
+      <%- include('../../partials/slider') %>
+        <div class="manage-right">
+            <div class="row mt-5">
+                <div class="col-12"><h3>Thêm role</h3></div>
+                <form action="/roleCreate" method="post" class="col-12">
+                    <div class="form-group">
+                        <label>Tên vai trò</label>
+                        <input required type="text" class="form-control" name="name" placeholder="Nhập tên vai trò">
+                    </div>
+
+                    <div class="form-group my-2">
+                        <label>Mô tả vai trò</label>
+                        <input required type="text" class="form-control" name="display_name" placeholder="Mô tả vai trò">
+                    </div>
+
+                    <div class="row">
+                        <label>Thêm quyền truy cập</label>
+                        <div class="mb-3 col-md-12">
+                            <div class="card-group">
+                                <%for(let i=0;i<data.length;i++){%>
+                                    <div class="card-body col-md-3">
+                                        <input name="permission" type="checkbox" value="<%=data[i].keyMap%>">
+                                        <span><%=data[i].name%></span>
+                                    </div>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

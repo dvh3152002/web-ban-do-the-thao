@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+}
+
+.manage-container{
+    display: flex;
+}
+
+.manage-left{
+    background-color: #333;
+    color: white;
+    width: 25%;
+    min-height: 100vh;
+}
+
+.manage-left .manage-top{
+    border-bottom: 1px solid gray;
+}
+
+.manage-left .manage-top img{
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.manage-container .manage-left li{
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.manage-container .manage-left li a{
+    text-decoration: none;
+    color: white;
+}
+
+.manage-container .manage-right{
+    margin-left: 30px;
+    width: 70%;
+}
+
+.login-container{
+    background: linear-gradient(135deg, rgb(83, 17, 153) 0%, rgb(11, 75, 187) 100%);
+}
+
+.upload-img{
+    display: none;
+}
+
+.product-img{
+    width: 120px !important;
+    height: 100px !important;
+}
+
+.manage-menu{
+    padding: 5px 10px;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: #ccc;
+}
+
+.manage-menu>.title{
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.manage-menu-right{
+    display: flex;
+    gap: 15px;
+}
+
+.manage-menu-right> .log-out >button{
+    color: #ccc;
+    background-color: #333;
+    outline: none;
+    border: none;
+}

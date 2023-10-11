@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/js/select2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+    <div class="manage-menu">
+        <h4 class="title">Trang quản trị</h4>
+        <div class="manage-menu-right">
+            <div class="">
+                <i class="fas fa-user"></i><span>Xin chào <%=user?user.name:''%></span>
+            </div>
+            <form action="/logout" method="post" class="log-out">
+                <button><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></button>
+            </form>
+        </div>
+    </div>
+    <div class="manage-container">
+      <%- include('../partials/slider') %>
+        <div class="manage-right">
+            <div class="row mt-5">
+                <ul class="col-12" style="display: flex;gap: 15px;">
+                    <li class="col-4" style="text-align: center;background-color: cadetblue; padding: 20px 10px 10px;">
+                        <p><i class="fas fa-user" style="font-size: 30px;color: #fff;"></i></p>
+                        <p style="font-size: 20px;color: #fff;"><%=count.countUser%> người dùng</p>
+                    </li>
+                    <li class="col-4" style="text-align: center;background-color: burlywood; padding: 20px 10px 10px;">
+                        <p><i class="fas fa-user" style="font-size: 30px;color: #fff;"></i></p>
+                        <p style="font-size: 20px;color: #fff;"><%=count.countProduct%> sản phẩm</p>
+                    </li>
+                    <li class="col-4" style="text-align: center;background-color: coral; padding: 20px 10px 10px;">
+                        <p><i class="fas fa-user" style="font-size: 30px;color: #fff;"></i></p>
+                        <p style="font-size: 20px;color: #fff;"><%=count.countOrder%> đơn hàng</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

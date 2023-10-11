@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../partials/head') %>
+</head>
+<body>
+  <%- include('../../partials/menu') %>
+  <div class="manage-container">
+      <%- include('../../partials/slider') %>
+      <div class="manage-right">
+          <div class="row">
+              <div class="col-12"><h3>Vai trò</h3></div>
+              <div class="col-md-12 mb-2">
+                <a href="/roleCreate" class="btn btn-primary float-end">Add</a>
+              </div>
+              <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên vai trò</th>
+                        <th scope="col">Mô tả vai trò</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let i=0;i<data?.length;i++){ %>
+                        <form action="/roleDelete" method="post">
+                          <tr>
+                          <td class="col-3"><%= data[i].name %></td>
+                          <td class="col-3"><%= data[i].display_name%></td>
+                          <td class="col-2">
+                            <a href="/roleEdit/<%=data[i].id %>" class="btn btn-success">Sửa</a>
+                              <input type="text" name="id" value="<%=data[i].id %>" hidden>
+                              <button <%=data[i].name==='admin'?'disabled':''%> class="btn btn-danger">Xóa</button>
+                          </td>
+                        </tr>
+                      </form>
+                      <% } %>
+                    </tbody>
+                </table>
+              </div>
+              <nav>
+                <ul id="menu" class="pagination pagination-sm">
+                  <%for(let i=0;i<count;i++){%>
+                    <li class="page-item <%=page===i+1?'active':''%>" aria-current="page">
+                      <a href="/roleList/<%=i+1%>" class="page-link"><%=i+1%></a>
+                    </li>
+                  <%}%>
+                </ul>
+              </nav>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
